@@ -39,6 +39,7 @@ export default class RNPickerSelect extends PureComponent {
         children: PropTypes.any, // eslint-disable-line react/forbid-prop-types
         placeholderTextColor: ColorPropType, // deprecated
         useNativeAndroidPickerStyle: PropTypes.bool,
+        onTrigger: PropTypes.func,
 
         // Custom Modal props (iOS only)
         hideDoneBar: PropTypes.bool, // deprecated
@@ -83,6 +84,7 @@ export default class RNPickerSelect extends PureComponent {
         onDownArrow: null,
         onOpen: null,
         onClose: null,
+        onTrigger: null,
         modalProps: {},
         textInputProps: {},
         pickerProps: {},
@@ -409,6 +411,7 @@ export default class RNPickerSelect extends PureComponent {
             <View style={[defaultStyles.viewContainer, style.viewContainer]}>
                 <TouchableWithoutFeedback
                     onPress={() => {
+                        this.props.onTrigger && this.props.onTrigger();
                         this.togglePicker(true);
                     }}
                     testID="ios_touchable_wrapper"
